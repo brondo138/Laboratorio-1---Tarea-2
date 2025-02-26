@@ -1,8 +1,11 @@
+import { prestamos } from "./prestamos";
 import { rd } from "./readline";
 
 async function main() {
 
-    let opcion = Number((await rd.question(`
+    let condition = true;
+    do {
+        let opcion = Number((await rd.question(`
 Biblioteca Virtual\n---------------------------------------------------\n1.Gestionar prestamos 
 2.Devolver libros 
 3.Mostrar recomendaciones 
@@ -11,12 +14,10 @@ Biblioteca Virtual\n---------------------------------------------------\n1.Gesti
 6.Valorar libros 
 7.Notificar disponibilidad 
 8.Salir\n---------------------------------------------------\nSeleccione una opción: `)).trim());
-
-    let condition = true;
-    do {
         
         switch (opcion) {
             case 1:
+                await prestamos();
                 break;
             case 2:
                 break;

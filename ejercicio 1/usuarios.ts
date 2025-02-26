@@ -14,7 +14,7 @@ class Cliente extends Usuario{
     }
 }
 
-const usuarios: Cliente[] = [
+export const usuarios: Cliente[] = [
     new Cliente(1, "Alex Lovos"),
     new Cliente(2,"Steveen Portillo"),
     new Cliente(3, "Elvin Rivera")

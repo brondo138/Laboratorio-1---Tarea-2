@@ -37,7 +37,7 @@ export enum GeneroLibro{
 export abstract class Libro {
     constructor(public genero: GeneroLibro, public nombre: string, public autor: string, public estado:EstadoLibro){}
 
-    abstract mostrarInfo();
+    abstract mostrarInfo(): string; //supuesto error
 }
 
 export class LibroVirtual extends Libro {

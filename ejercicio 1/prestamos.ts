@@ -1,4 +1,7 @@
 import { Prestamo, Multa , LibroVirtual, GeneroLibro, EstadoLibro} from "./libros";
+import { mostrar, seleccionar } from "./function";
+import { rd } from "./readline";
+import { usuarios } from "./usuarios";
 
 class GestionPrestamos extends LibroVirtual implements Prestamo, Multa{
 
@@ -19,4 +22,17 @@ class GestionPrestamos extends LibroVirtual implements Prestamo, Multa{
     }
 }
 
-const prestamos: GestionPrestamos[] = []
+const prestamosLista: GestionPrestamos[] = []
+
+
+export async function prestamos() {
+    let usuario = Number((await rd.question("\nIngresa tu id: ")).trim());
+
+    if (usuarios.some(cliente => cliente.id == usuario)) {
+        let cliente = seleccionar(usuario,usuarios)
+        console.log(`Bienvenido ${cliente.nombre}`);
+    }else{
+        console.error("\nError: ID no encontrado\n");
+        
+    }
+}
