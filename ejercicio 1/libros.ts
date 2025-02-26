@@ -1,3 +1,5 @@
+import { Cliente } from "./usuarios";
+
 export interface Prestamo {
     prestarLibro(usuarioID: number, libroID: number):void;
     devolverLibro(usuarioID: number, libroID: number): void;
@@ -35,13 +37,13 @@ export enum GeneroLibro{
 }
 
 export abstract class Libro {
-    constructor(public genero: GeneroLibro, public nombre: string, public autor: string, public estado:EstadoLibro){}
+    constructor(public genero: GeneroLibro, public nombre: string, public autor: string, protected estado:EstadoLibro){}
 
     abstract mostrarInfo(): string; //supuesto error
 }
 
 export class LibroVirtual extends Libro {
-    constructor( genero: GeneroLibro, nombre: string, autor: string, estado:EstadoLibro){
+    constructor( genero: GeneroLibro, nombre: string, autor: string, estado:EstadoLibro, protected owner?:Cliente){
         super(genero, nombre, autor, estado);
     }
 
@@ -50,7 +52,7 @@ export class LibroVirtual extends Libro {
     }
 }
 
-const libros: LibroVirtual[] = [
+export const libros: LibroVirtual[] = [
     new LibroVirtual(GeneroLibro.ACCION, "La isla del tesoro","Robert Louis Stevenson",EstadoLibro.DISPONIBLE),
     new LibroVirtual(GeneroLibro.ACCION, "Odisea","Homero",EstadoLibro.DISPONIBLE),
     new LibroVirtual(GeneroLibro.ACCION,"Robinson Crusoe","Daniel Defoe",EstadoLibro.DISPONIBLE),

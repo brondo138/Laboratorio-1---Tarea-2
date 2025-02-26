@@ -1,40 +1,33 @@
+import { seleccionarLibro } from "./function";
 import { prestamos } from "./prestamos";
 import { rd } from "./readline";
+import { menu } from "./usuarioMenu";
+import { ingresar, usuarios } from "./usuarios";
 
 async function main() {
 
     let condition = true;
     do {
-        let opcion = Number((await rd.question(`
-Biblioteca Virtual\n---------------------------------------------------\n1.Gestionar prestamos 
-2.Devolver libros 
-3.Mostrar recomendaciones 
-4.Calcular multas 
-5.Generar reportes 
-6.Valorar libros 
-7.Notificar disponibilidad 
-8.Salir\n---------------------------------------------------\nSeleccione una opción: `)).trim());
+        const opcion = Number((await rd.question(`
+Biblioteca Virtual\n---------------------------------------------------\n1.Ingresar
+2.Salir\n---------------------------------------------------\nSeleccione una opción: `)).trim());
         
         switch (opcion) {
             case 1:
-                await prestamos();
+                const usuarioID = Number((await rd.question("\nIngresa tu id: ")).trim());
+                if (ingresar(usuarioID) == true) {
+                    let usuario = seleccionarLibro(usuarioID,usuarios) 
+
+                    await menu(usuario);
+                }else {
+                    console.error("Error: Ingresa un usuario valido");
+                }
                 break;
             case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-            case 5:
-                break;
-            case 6:
-                break;
-            case 7:
-                break;
-            case 8:
                 condition = false;
                 process.exit(0);
                 break;
+
             default:
                 console.error("Error: Ingrese una opcion valida");
                 break;

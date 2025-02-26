@@ -1,7 +1,7 @@
-import { Prestamo, Multa , LibroVirtual, GeneroLibro, EstadoLibro} from "./libros";
-import { mostrar, seleccionar } from "./function";
+import { Prestamo, Multa , LibroVirtual, GeneroLibro, EstadoLibro, libros} from "./libros";
+import { mostrar, seleccionarLibro } from "./function";
 import { rd } from "./readline";
-import { usuarios } from "./usuarios";
+import { ingresar, usuarios } from "./usuarios";
 
 class GestionPrestamos extends LibroVirtual implements Prestamo, Multa{
 
@@ -25,14 +25,40 @@ class GestionPrestamos extends LibroVirtual implements Prestamo, Multa{
 const prestamosLista: GestionPrestamos[] = []
 
 
-export async function prestamos() {
-    let usuario = Number((await rd.question("\nIngresa tu id: ")).trim());
-
-    if (usuarios.some(cliente => cliente.id == usuario)) {
-        let cliente = seleccionar(usuario,usuarios)
-        console.log(`Bienvenido ${cliente.nombre}`);
-    }else{
-        console.error("\nError: ID no encontrado\n");
+export async function prestamos(usuario:any) {
+    
+    let condition = true;
+    
+    do {
         
-    }
+
+        const opcion = Number((await rd.question(`
+Biblioteca Virtual, Usuario: ${usuario.nombre}, Categorias de Libros\n---------------------------------------------------
+1.${GeneroLibro.ACCION}
+2.${GeneroLibro.FANTASIA}
+3.${GeneroLibro.TERROR}
+4.Volver\n---------------------------------------------------\nSeleccione una opción: `)).trim());
+
+        switch (opcion) {
+            case 1:
+
+                mostrar(libros,GeneroLibro.ACCION)
+                
+                break;
+            case 2:
+                mostrar(libros,GeneroLibro.FANTASIA)
+                break;
+            case 3:
+                mostrar(libros,GeneroLibro.TERROR)
+                break;
+            case 4:
+                condition = false;
+                break;
+        
+            default:
+                break;
+        }
+    } while (condition);
 }
+
+
