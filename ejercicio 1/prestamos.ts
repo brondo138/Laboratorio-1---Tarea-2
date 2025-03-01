@@ -1,64 +1,90 @@
-import { Prestamo, Multa , LibroVirtual, GeneroLibro, EstadoLibro, libros} from "./libros";
-import { mostrar, seleccionarLibro } from "./function";
+import { GeneroLibro, libros, libroSeleccionPrestamo, LibroVirtual } from "./libros";
+import { seleccionar } from "./function";
 import { rd } from "./readline";
-import { ingresar, usuarios } from "./usuarios";
+import { usuarios } from "./usuarios";
 
-class GestionPrestamos extends LibroVirtual implements Prestamo, Multa{
+class GestionPrestamos {
+    prestarLibro(usuarioID: number, libro: LibroVirtual): void {
+        let usuario = seleccionar(usuarioID, usuarios);
 
-    constructor(genero: GeneroLibro, nombre: string, autor: string, estado:EstadoLibro) {
-        super(genero, nombre, autor, estado);
-    }
-    
-    prestarLibro(usuarioID: number, libroID: number): void {
-        
-    }
+        if (!usuario) {
+            console.log("Error: Usuario no encontrado.");
+            return;
+        }
 
-    devolverLibro(usuarioID: number, libroID: number): void {
-        
-    }
+        if (!libro) {
+            console.log("Error: Libro no encontrado.");
+            return;
+        }
 
-    calcularMulta(usuarioID: number): number {
-        return 10;
+        if (libro.cantidad <= 0) {
+            console.log(`El libro "${libro.nombre}" no está disponible.`);
+            return;
+        }
+
+        if (usuario.libro) {
+            console.log("Lo sentimos, no puedes obtener otro libro mientras tengas uno.");
+            return;
+        }
+
+        usuario.libro = libro;
+        libro.cantidad -= 1;
+        console.log(`${usuario.nombre} ha tomado prestado: "${libro.nombre}"`);
     }
 }
 
-const prestamosLista: GestionPrestamos[] = []
-
-
-export async function prestamos(usuario:any) {
-    
+export async function prestamos(usuario: any) {
     let condition = true;
-    
-    do {
-        
 
-        const opcion = Number((await rd.question(`
-Biblioteca Virtual, Usuario: ${usuario.nombre}, Categorias de Libros\n---------------------------------------------------
-1.${GeneroLibro.ACCION}
-2.${GeneroLibro.FANTASIA}
-3.${GeneroLibro.TERROR}
-4.Volver\n---------------------------------------------------\nSeleccione una opción: `)).trim());
+    do {
+        console.log(`
+📚 Biblioteca Virtual - Usuario: ${usuario.nombre}
+---------------------------------------------------
+1. ${GeneroLibro.ACCION}
+2. ${GeneroLibro.FANTASIA}
+3. ${GeneroLibro.TERROR}
+4. Volver
+---------------------------------------------------
+`);
+        const opcion = Number((await rd.question("Seleccione una opción: ")).trim());
 
         switch (opcion) {
             case 1:
-
-                mostrar(libros,GeneroLibro.ACCION)
-                
+                await seleccionarYPrestarLibro(usuario, GeneroLibro.ACCION);
                 break;
             case 2:
-                mostrar(libros,GeneroLibro.FANTASIA)
+                await seleccionarYPrestarLibro(usuario, GeneroLibro.FANTASIA);
                 break;
             case 3:
-                mostrar(libros,GeneroLibro.TERROR)
+                await seleccionarYPrestarLibro(usuario, GeneroLibro.TERROR);
                 break;
             case 4:
                 condition = false;
                 break;
-        
             default:
+                console.log("Error: Opción inválida, intente nuevamente.");
                 break;
         }
     } while (condition);
 }
 
+async function seleccionarYPrestarLibro(usuario: any, genero: GeneroLibro) {
+    console.log(`Libros de ${genero}`);
+    const libroSeleccionado = await libroSeleccionPrestamo(libros, genero);
 
+    if (libroSeleccionado === 1) {
+        return;
+    }
+
+    console.log("\n🔎 Información del Libro:");
+    console.log(libroSeleccionado.mostrarInfo());
+
+    let confirmacion = Number((await rd.question("\n¿Quieres tomarlo prestado?\n1. Sí\n2. No\n\nOpción: ")).trim());
+
+    if (confirmacion === 1) {
+        const prestamo = new GestionPrestamos();
+        prestamo.prestarLibro(usuario.id, libroSeleccionado);
+    } else {
+        console.log("Regresando al menú...");
+    }
+}
