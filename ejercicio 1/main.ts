@@ -1,4 +1,4 @@
-import { seleccionarLibro } from "./function";
+import { seleccionar } from "./function";
 import { prestamos } from "./prestamos";
 import { rd } from "./readline";
 import { menu } from "./usuarioMenu";
@@ -16,7 +16,7 @@ Biblioteca Virtual\n---------------------------------------------------\n1.Ingre
             case 1:
                 const usuarioID = Number((await rd.question("\nIngresa tu id: ")).trim());
                 if (ingresar(usuarioID) == true) {
-                    let usuario = seleccionarLibro(usuarioID,usuarios) 
+                    let usuario = seleccionar(usuarioID,usuarios) 
 
                     await menu(usuario);
                 }else {
