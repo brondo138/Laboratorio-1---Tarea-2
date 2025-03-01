@@ -9,7 +9,7 @@ abstract class Usuario {
     }
     
 
-    abstract mostrarPerfil(): string;
+    abstract mostrarLibros(): string;
 }
 
 export class Cliente extends Usuario{
@@ -17,8 +17,14 @@ export class Cliente extends Usuario{
         super(id, nombre);
     }
 
-    mostrarPerfil(): string {
-        return `ID: ${this.id} \nNombre de Usuario: ${this.nombre}`;
+    mostrarLibros(): string {
+
+        if (this.libro) {
+        
+            return `\n${this.nombre}\nLibro: ${this.libro?.nombre}`;
+        }else {
+            return "";
+        }
     }
 }
 
