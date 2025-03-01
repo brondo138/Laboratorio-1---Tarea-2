@@ -29,7 +29,7 @@ class GestionPrestamos {
 
         usuario.libro = libro;
         libro.cantidad -= 1;
-        console.log(`${usuario.nombre} ha tomado prestado: "${libro.nombre}"`);
+        console.log(`\n${usuario.nombre} ha tomado prestado: "${libro.nombre}"`);
     }
 }
 
