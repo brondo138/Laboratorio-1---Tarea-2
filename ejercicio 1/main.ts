@@ -24,8 +24,8 @@ Biblioteca Virtual\n---------------------------------------------------\n1.Ingre
                 }
                 break;
             case 2:
-                process.exit(0);
                 condition = false;
+                process.exit(0);
                 break;
 
             default:
