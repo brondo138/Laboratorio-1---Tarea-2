@@ -1,6 +1,7 @@
 import { prestamos, devolverLibro } from "./prestamos";
 import { rd } from "./readline";
 import { Cliente } from "./usuarios";
+import { generarReporte, recomendarLibros } from "./function";
 
 export async function menu(usuario: Cliente) {
     let condition = true;
@@ -11,11 +12,10 @@ export async function menu(usuario: Cliente) {
 1. Solicitar préstamo 
 2. Devolver libros 
 3. Mostrar recomendaciones 
-4. Calcular multas 
-5. Generar reportes 
-6. Valorar libros 
-7. Notificar disponibilidad 
-8. Cerrar sesión
+4. Generar reportes 
+5. Valorar libros 
+6. Notificaciones
+7. Cerrar sesión
 ---------------------------------------------------
 Seleccione una opción: `)).trim());
 
@@ -27,21 +27,18 @@ Seleccione una opción: `)).trim());
                 await devolverLibro(usuario);
                 break;
             case 3:
-                console.log("📌 Mostrando recomendaciones...");
+                recomendarLibros(usuario);
                 break;
             case 4:
-                console.log("💰 Calculando multas...");
+                generarReporte(usuario);
                 break;
             case 5:
-                console.log("📊 Generando reportes...");
-                break;
-            case 6:
                 console.log("⭐ Valorar libros...");
                 break;
-            case 7:
-                console.log("📩 Notificar disponibilidad...");
+            case 6:
+                console.log("📩 Revisando notificaciones...");
                 break;
-            case 8:
+            case 7:
                 condition = false;
                 break;
             default:

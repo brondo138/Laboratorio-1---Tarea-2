@@ -1,31 +1,6 @@
 import { mostrar } from "./function";
 import { rd } from "./readline";
 
-export interface Prestamo {
-    prestarLibro(usuarioID: number, libroID: number): void;
-    devolverLibro(usuarioID: number): void;
-}
-
-export interface Recomendacion {
-    recomendarLibros(usuarioID: number): string[];
-}
-
-export interface Multa {
-    calcularMulta(usuarioID: number): number;
-}
-
-export interface Reporte {
-    generarReporte(): void;
-}
-
-export interface Reseña {
-    generarReseña(libroId: number, calificacion: number, comentario: string): void;
-}
-
-export interface Notificacion {
-    notificarDisponibilidad(libroId: number, usuarioId: number): void;
-}
-
 export enum EstadoLibro {
     DISPONIBLE = "Disponible",
     NO_DISPONIBLE = "No disponible"
@@ -50,13 +25,37 @@ export abstract class Libro {
 }
 
 export class LibroVirtual extends Libro {
+    reseñas: { usuario: string; calificacion: number; comentario: string }[] = [];
+
     mostrarInfo() {
         return `📖 Nombre: ${this.nombre}\n👤 Autor: ${this.autor}\n🎭 Género: ${this.genero}\n📌 Disponibles: ${this.cantidad}`;
+    }
+
+    agregarReseña(usuario: string, calificacion: number, comentario: string) {
+        this.reseñas.push({ usuario, calificacion, comentario });
+        console.log(`✅ Reseña agregada para "${this.nombre}"`);
+    }
+
+    verReseñas() {
+        if (!this.reseñas.length) {
+            console.log("📌 No hay reseñas aún.");
+            return;
+        }
+        console.log(`📌 Reseñas de "${this.nombre}":`);
+        this.reseñas.forEach((res, index) => {
+            console.log(`${index + 1}. ⭐ ${res.calificacion}/5 - "${res.comentario}" (por ${res.usuario})`);
+        });
     }
 }
 
 export const libros: LibroVirtual[] = [
-    new LibroVirtual(1, GeneroLibro.ACCION, "La isla del tesoro", "Robert L. Stevenson", 4),
-    new LibroVirtual(2, GeneroLibro.FANTASIA, "El señor de los anillos", "J. R. R. Tolkien", 2),
-    new LibroVirtual(3, GeneroLibro.TERROR, "Drácula", "Bram Stoker", 1)
+    new LibroVirtual(1, GeneroLibro.ACCION, "La isla del tesoro", "Robert L. Stevenson", 1),
+    new LibroVirtual(2, GeneroLibro.ACCION, "Odisea", "Homero", 1),
+    new LibroVirtual(3, GeneroLibro.ACCION, "Robinson Crusoe", "Daniel Defoe", 1),
+    new LibroVirtual(4, GeneroLibro.FANTASIA, "El señor de los anillos", "J. R. R. Tolkien", 1),
+    new LibroVirtual(5, GeneroLibro.FANTASIA, "El último deseo", "Andrzej Sapkowski", 1),
+    new LibroVirtual(6, GeneroLibro.FANTASIA, "El pozo de la ascensión", "Brandon Sanderson", 1),
+    new LibroVirtual(7, GeneroLibro.TERROR, "Drácula", "Bram Stoker", 1),
+    new LibroVirtual(8, GeneroLibro.TERROR, "La casa de las sombras", "Adam Nevill", 1),
+    new LibroVirtual(9, GeneroLibro.TERROR, "Carrie", "Stephen King", 1)
 ];

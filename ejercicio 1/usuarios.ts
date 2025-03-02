@@ -1,19 +1,12 @@
 import { LibroVirtual } from "./libros";
 
-abstract class Usuario {
-    constructor(protected id: number, public nombre: string, public libro?: LibroVirtual) {}
+export class Cliente {
+    public historial: { libro: string; fecha: string }[] = [];
+    public listaDeseos: string[] = [];
+    public libro?: LibroVirtual;
+    public fechaPrestamo: string = "";
 
-    public get obtenerId(): number {
-        return this.id;
-    }
-
-    abstract mostrarLibros(): string;
-}
-
-export class Cliente extends Usuario {
-    mostrarLibros(): string {
-        return this.libro ? `📚 Libro en préstamo: ${this.libro.nombre}` : "📭 No tiene libros en préstamo.";
-    }
+    constructor(public id: number, public nombre: string) {}
 }
 
 export const usuarios: Cliente[] = [
@@ -23,5 +16,5 @@ export const usuarios: Cliente[] = [
 ];
 
 export function ingresar(id: number): boolean {
-    return usuarios.some(cliente => cliente.obtenerId === id);
+    return usuarios.some(cliente => cliente.id === id);
 }
