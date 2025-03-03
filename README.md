@@ -32,6 +32,7 @@ Si ya no hay libros en esa categoría, **se pasa a otra disponible**.
 Si ya se leyeron todos los libros, **se muestra un mensaje informativo**.  
 
 📌 **Usuarios Disponibles:**  
+Cuando se solicite el id estos son los disponibles 
 | ID | Nombre             |
 |----|--------------------|
 | 1  | Alex Lovos        |
