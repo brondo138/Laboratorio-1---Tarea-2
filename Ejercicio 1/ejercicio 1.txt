@@ -1,0 +1,17 @@
+# Ejercicio 1
+
+Desarrollar un sistema para una biblioteca virtal que permita lo siguiente:
+
+    -Gestionar préstamos de libros electrónicos
+    -Implementar un sistema de recomendaciones basado en las últimas lecturas
+    -Calcular multas por retrasos automáticamente
+    -Generar reportes de libros más prestados
+    -Permitir valoraciones y reseñas de los usuarios
+    -Notificar cuando un libro de la lista de deseos esté disponible
+
+Para resolver el ejercicio debe incluir:
+
+    -Interfaces
+    -Clases abstractas
+    -Clases concretas
+    -Herencia y polimorfismo
