@@ -102,7 +102,7 @@ Ejecuta el siguiente comando para compilar y correr los archivos TypeScript:
 ```bash
 ts-node main.ts 
 ```
-Dependiendo que archivo quisiermos ejecutar
+Dependiendo que archivo quisiéramos ejecutar
 
 ---
 
