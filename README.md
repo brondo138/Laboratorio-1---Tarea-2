@@ -11,7 +11,7 @@
 
 ## 📌 Ejercicios a Desarrollar
 
-### **📚 Ejercicio 1: Biblioteca Virtual**
+### **📚 Ejercicio 1: Biblioteca Virtual - Alex Francisco Lovos Argueta**
 **Desarrollar un sistema para una biblioteca virtual que permita:**  
 ✅ Gestionar préstamos de libros electrónicos.  
 ✅ Implementar un sistema de recomendaciones basado en las últimas lecturas.  
@@ -41,7 +41,7 @@ Cuando se solicite el id estos son los disponibles
 
 ---
 
-### **🃏 Ejercicio 2: Juego de Cartas**
+### **🃏 Ejercicio 2: Juego de Cartas - Elvin Elisander Rivera Sorto**
 
 **Desarrollar un juego de cartas que incluya:**  
 ✅ Cartas con poderes y habilidades únicas.  
@@ -59,7 +59,7 @@ Cuando se solicite el id estos son los disponibles
 
 ---
 
-### **📈 Ejercicio 3: Gestión de Tareas**
+### **📈 Ejercicio 3: Gestión de Tareas - Steveen Antonio Portillo Gómez**
 
 **Desarrollar un sistema de gestión de tareas que:**  
 ✅ Maneje diferentes tipos de tareas.  
