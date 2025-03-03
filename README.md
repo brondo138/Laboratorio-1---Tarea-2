@@ -156,5 +156,3 @@ El repositorio debe incluir:
 
 ## 📅 **Fecha de Entrega**
 📌 **2 de Marzo 2025**  
-
-🚀 **¡Gracias por revisar nuestro proyecto!**  
