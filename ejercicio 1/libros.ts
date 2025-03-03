@@ -1,6 +1,3 @@
-import { mostrar } from "./function";
-import { rd } from "./readline";
-
 export enum EstadoLibro {
     DISPONIBLE = "Disponible",
     NO_DISPONIBLE = "No disponible"
@@ -28,22 +25,22 @@ export class LibroVirtual extends Libro {
     reseñas: { usuario: string; calificacion: number; comentario: string }[] = [];
 
     mostrarInfo() {
-        return `📖 Nombre: ${this.nombre}\n👤 Autor: ${this.autor}\n🎭 Género: ${this.genero}\n📌 Disponibles: ${this.cantidad}`;
+        return `Nombre: ${this.nombre}\nAutor: ${this.autor}\nGénero: ${this.genero}\nDisponibles: ${this.cantidad}`;
     }
 
     agregarReseña(usuario: string, calificacion: number, comentario: string) {
         this.reseñas.push({ usuario, calificacion, comentario });
-        console.log(`✅ Reseña agregada para "${this.nombre}"`);
+        console.log(`Reseña agregada para "${this.nombre}"`);
     }
 
     verReseñas() {
         if (!this.reseñas.length) {
-            console.log("📌 No hay reseñas aún.");
+            console.log("No hay reseñas aún para este libro.");
             return;
         }
-        console.log(`📌 Reseñas de "${this.nombre}":`);
-        this.reseñas.forEach((res, index) => {
-            console.log(`${index + 1}. ⭐ ${res.calificacion}/5 - "${res.comentario}" (por ${res.usuario})`);
+        console.log(`Reseñas de "${this.nombre}":`);
+        this.reseñas.forEach((reseña, index) => {
+            console.log(`${index + 1}.${reseña.calificacion}/5 - "${reseña.comentario}" (por ${reseña.usuario})`);
         });
     }
 }

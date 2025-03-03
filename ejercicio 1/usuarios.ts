@@ -3,6 +3,7 @@ import { LibroVirtual } from "./libros";
 export class Cliente {
     public historial: { libro: string; fecha: string }[] = [];
     public listaDeseos: string[] = [];
+    public notificaciones: string[] = [];
     public libro?: LibroVirtual;
     public fechaPrestamo: string = "";
 

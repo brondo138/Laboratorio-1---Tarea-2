@@ -21,7 +21,7 @@ Seleccione una opción: `)).trim());
                     let usuario = seleccionar(usuarioID, usuarios);
                     await menu(usuario);
                 } else {
-                    console.error("❌ Usuario no encontrado.");
+                    console.error("Usuario no encontrado.");
                 }
                 break;
             case 2:
@@ -29,7 +29,7 @@ Seleccione una opción: `)).trim());
                 process.exit(0);
                 break;
             default:
-                console.error("❌ Ingrese una opción válida.");
+                console.error("Ingrese una opción válida.");
                 break;
         }
     } while (condition);
