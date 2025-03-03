@@ -42,13 +42,35 @@ Si ya se leyeron todos los libros, **se muestra un mensaje informativo**.
 
 ### **🃏 Ejercicio 2: Juego de Cartas**
 
-*Pendiente de completar por el integrante correspondiente.*
+**Desarrollar un juego de cartas que incluya:**  
+✅ Cartas con poderes y habilidades únicas.  
+✅ Mejora y combinación de cartas.  
+✅ Sistema de batalla entre cartas.  
+✅ Cálculo de daño según elementos y efectos especiales.  
+✅ Creación automática de mazos temáticos.  
+✅ Implementación de sistema de rankings.  
+
+**📌 Implementación:**  
+✔️ Uso de **interfaces** para definir estructuras de cartas y batallas.  
+✔️ **Clases abstractas** y **concretas** para manejar cartas y jugadores.  
+✔️ Aplicación de **herencia y polimorfismo** para gestionar habilidades y efectos.  
+✔️ Sistema de **rankings** basado en las victorias y derrotas de los jugadores.  
 
 ---
 
 ### **📈 Ejercicio 3: Gestión de Tareas**
 
-*Pendiente de completar por el integrante correspondiente.*
+**Desarrollar un sistema de gestión de tareas que:**  
+✅ Maneje diferentes tipos de tareas.  
+✅ Asigne prioridades a las tareas.  
+✅ Calcule el tiempo estimado de cada tarea.  
+✅ Genere reportes de productividad.  
+✅ Permita asignación de recursos a las tareas.  
+
+**📌 Implementación:**  
+✔️ Uso de **Enums** para definir estados de las tareas.  
+✔️ Implementación de **Types** para estructurar los datos.  
+✔️ Uso de **Generics** para optimizar la gestión de tareas y recursos.  
 
 ---
 
